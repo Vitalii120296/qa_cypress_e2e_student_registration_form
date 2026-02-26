@@ -5,6 +5,18 @@ describe('Student Registration page', () => {
     cy.visit('/');
   });
 
+  const rows = [
+    'Vitalii Hulaievych',
+    'test@gmail.com',
+    'Male',
+    '123456789',
+    '12 February,1996',
+    'Sports',
+    'English',
+    'Any addres',
+    'Haryana Panipat'
+  ];
+
   it('should register new user', () => {
     cy.get('#firstName').type('Vitalii');
     cy.get('#lastName').type('Hulaievych');
@@ -17,7 +29,9 @@ describe('Student Registration page', () => {
     cy.get('.react-datepicker__year-select').select('1996');
     cy.get('[aria-label="Choose Monday, February 12th, 1996"]').click();
 
-    cy.get('#subjectsInput').type('Subject');
+    cy.get('#subjectsInput').type('s');
+    cy.contains('div', 'English').click();
+
     cy.get('#hobbies-checkbox-1').click();
 
     cy.get('#currentAddress').type('Any address');
@@ -30,9 +44,8 @@ describe('Student Registration page', () => {
 
     cy.get('#submit').click();
 
-    cy.contains(
-      '#example-modal-sizes-title-lg',
-      'Thanks for submitting the form'
-    ).should('exist');
+    for (const value of rows) {
+      cy.contains('td', value).should('exist');
+    }
   });
 });

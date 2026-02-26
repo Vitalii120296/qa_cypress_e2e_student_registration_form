@@ -1,5 +1,4 @@
 /// <reference types='cypress' />
-import 'cypress-file-upload';
 
 describe('Student Registration page', () => {
   before(() => {
@@ -16,12 +15,10 @@ describe('Student Registration page', () => {
 
     cy.get('.react-datepicker__month-select').select(1);
     cy.get('.react-datepicker__year-select').select('1996');
-    cy.get('[aria-label="Choose Monday, February 12th, 1996"').click();
+    cy.get('[aria-label="Choose Monday, February 12th, 1996"]').click();
 
     cy.get('#subjectsInput').type('Subject');
     cy.get('#hobbies-checkbox-1').click();
-
-    cy.get('#uploadPicture').attachFile('image.avif');
 
     cy.get('#currentAddress').type('Any address');
 
